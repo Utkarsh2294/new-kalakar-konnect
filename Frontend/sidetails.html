@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Digital Shopfront</title>
+    <link rel="stylesheet" href="sistyle.css">
+</head>
+
+<body>
+    
+
+    <div class="form-container">
+        <h1>Build Your Digital Shopfront</h1>
+        <form>
+            <label for="shopName">Shop Name</label>
+            <input type="text" id="shopName" name="shopName" placeholder="Artisan Alley">
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Shop no ....">
+
+            <label for="pincode">Pincode</label>
+            <input type="text" id="pincode" name="pincode" placeholder="xxxxxx">
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Delhi">
+
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="India">
+
+            <label for="primaryCraft">Choose Your Primary Craft:</label>
+            <select id="primaryCraft" name="primaryCraft" required>
+                <option value="">Select your main art form</option>
+                <option value="zardozi">Zardozi Embroidery</option>
+                <option value="meenakari">Meenakari Jewelry</option>
+                <option value="terracotta">Terracotta Pottery</option>
+                <option value="miniature">Miniature Painting</option>
+            </select>
+
+            <label for="experience">Years of Experience:</label>
+            <select id="experience" name="experience" required>
+                <option value="">Select your experience level</option>
+                <option value="0-5">0-5 years</option>
+                <option value="5-10">5-10 years</option>
+                <option value="10+">10+ years</option>
+            </select>
+
+            <label for="yourStory">Your story</label>
+            <input type="text" id="yourStory" name="yourStory" placeholder="">
+
+            <p><em>This is very important! Our AI will use this to write a beautiful story for your profile. Please answer in your own words: How did you learn your craft? Who taught you? What does this art mean to you and your family?</em></p>
+
+            <h1>Add Your Products</h1>
+            <p>(This section is repeatable. The artisan can click "Add Another Product" to fill this out for multiple items.)</p>
+
+            <div id="products-container">
+                <div class="product-form" data-product-index="1">
+                    <h2>Product 1</h2>
+
+                    <label for="product-name-1">Product Name:</label>
+                    <input type="text" id="product-name-1" name="product-name-1">
+                    <p> Give your product a clear and descriptive name. E.g., "Handmade Blue Peacock Meenakari Earrings".</p>
+
+                    <label for="product-price-1">Price (in ₹):</label>
+                    <input type="number" id="product-price-1" name="product-price-1" min="1">
+                    <p>Enter the price of your product in Indian Rupees.</p>
+
+                    <label for="product-images-1">Product Images:</label>
+                    <input type="file" id="product-images-1" name="product-images-1" multiple accept="image/*" onchange="handleFileSelect(event, 1)">
+                    <p>Upload up to 4 clear photos. Show the product from different angles, in good light. Good photos are key to good sales!</p>
+
+                    <div id="preview-container-1"></div>
+
+                    <button type="button" onclick="removeProduct(1)">Remove This Product</button>
+                </div>
+            </div>
+
+            <button type="button" onclick="addProduct()">Add Another Product</button>
+
+            <label>
+                <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+                I have read and agree to the Terms and Conditions and Privacy Policy of Delhi KalaKar Connect.
+            </label>
+
+            <button type="submit">Create My AI-Powered Shop!</button>
+        </form>
+    </div>
+
+    <script>
+        let productCount = 1;
+        let productFiles = { 1: [] };
+
+        function addProduct() {
+            productCount++;
+            const container = document.getElementById('products-container');
+
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product-form';
+            productDiv.setAttribute('data-product-index', productCount);
+
+            productDiv.innerHTML = `
+                <h2>Product ${productCount}</h2>
+
+                <label for="product-name-${productCount}">Product Name:</label>
+                <input type="text" id="product-name-${productCount}" name="product-name-${productCount}">
+                <p> Give your product a clear and descriptive name.</p>
+
+                <label for="product-price-${productCount}">Price (in ₹):</label>
+                <input type="number" id="product-price-${productCount}" name="product-price-${productCount}" min="1">
+                <p> Enter the price of your product in Indian Rupees.</p>
+
+                <label for="product-images-${productCount}">Product Images:</label>
+                <input type="file" id="product-images-${productCount}" name="product-images-${productCount}" multiple accept="image/*" onchange="handleFileSelect(event, ${productCount})">
+                <p> Upload up to 4 clear photos.</p>
+
+                <div id="preview-container-${productCount}"></div>
+
+                <button type="button" onclick="removeProduct(${productCount})">Remove This Product</button>
+            `;
+
+            container.appendChild(productDiv);
+            productFiles[productCount] = [];
+        }
+
+        function removeProduct(index) {
+            const productForm = document.querySelector(`[data-product-index="${index}"]`);
+            if (productForm && productCount > 1) {
+                productForm.remove();
+                delete productFiles[index];
+            } else if (productCount === 1) {
+                alert('You must have at least one product.');
+            }
+        }
+
+        function handleFileSelect(event, productIndex) {
+            const files = Array.from(event.target.files);
+
+            if (files.length > 4) {
+                alert('You can upload maximum 4 images per product');
+                event.target.value = '';
+                return;
+            }
+
+            productFiles[productIndex] = files;
+            displayPreviews(files, productIndex);
+        }
+
+        function displayPreviews(files, productIndex) {
+            const previewContainer = document.getElementById(`preview-container-${productIndex}`);
+            previewContainer.innerHTML = '';
+
+            if (files.length > 0) {
+                const previewTitle = document.createElement('h3');
+                previewTitle.textContent = 'Image Previews:';
+                previewContainer.appendChild(previewTitle);
+            }
+
+            files.forEach((file, index) => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imageDiv = document.createElement('div');
+                        imageDiv.innerHTML = `
+                            <p>Image ${index + 1}: ${file.name}</p>
+                            <img src="${e.target.result}" alt="Preview ${index + 1}" width="150" height="150">
+                            <button type="button" onclick="removeImage(${productIndex}, ${index})">Remove Image</button>
+                            <br><br>
+                        `;
+                        previewContainer.appendChild(imageDiv);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function removeImage(productIndex, imageIndex) {
+            if (productFiles[productIndex]) {
+                productFiles[productIndex].splice(imageIndex, 1);
+                displayPreviews(productFiles[productIndex], productIndex);
+
+                const fileInput = document.getElementById(`product-images-${productIndex}`);
+                const dt = new DataTransfer();
+                productFiles[productIndex].forEach(file => dt.items.add(file));
+                fileInput.files = dt.files;
+            }
+        }
+    </script>
+</body>
+
+</html>
