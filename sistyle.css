@@ -1,0 +1,185 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f9f9fb;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #6c63ff, #836fff);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.1rem;
+}
+
+/* Main layout */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/* Form Section */
+.form-section {
+  flex: 1 1 450px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  color: #444;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Buttons */
+button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: #5a52e0;
+  transform: scale(1.02);
+}
+
+button[type="button"] {
+  background: #ff6f61;
+}
+
+button[type="button"]:hover {
+  background: #e85b50;
+}
+
+/* Product Form Styling */
+.product-form {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f4f4ff;
+  border: 1px solid #dcdcff;
+  border-radius: 12px;
+}
+
+.product-form h2 {
+  margin-bottom: 0.5rem;
+  color: #6c63ff;
+}
+
+/* Image Previews */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0.7rem;
+}
+
+.preview-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  transition: transform 0.2s ease;
+}
+
+.preview-img:hover {
+  transform: scale(1.05);
+}
+
+/* Terms checkbox */
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Output Section */
+.output-section {
+  flex: 1 1 500px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.output-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.shop-preview {
+  background: #fafaff;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  color: #555;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artisan Search</title>
+  <link rel="stylesheet" href="bipage.css">
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>We will connect you with the best artisans nearby.</h3>
+    <form id="searchForm" class="search-form">
+      <input type="text" id="query" placeholder="What are you looking for...">
+      <input type="submit" value="Search">
+    </form>
+  </div>
+
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Google Maps API (replace YOUR_API_KEY with your real key) -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaN5t2AKf2GYMf6dOsfpsc5j2u0FKTqG4&callback=initMap"
+          async defer></script>
+  <script src="biscript.js"></script>
+</body>
+</html>

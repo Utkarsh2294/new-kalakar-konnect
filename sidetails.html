@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Shop Builder</title>
+  <link rel="stylesheet" href="sistyle.css">
+</head>
+<body>
+  <header>
+    <h1>AI-Powered Digital Shopfront</h1>
+    <p>Create your artisan store with Gemini AI ✨</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <form id="shopForm">
+        <label for="shopName">Shop Name</label>
+        <input type="text" id="shopName" name="shopName" placeholder="Artisan Alley" required>
+
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" placeholder="Shop no ....">
+
+        <label for="pincode">Pincode</label>
+        <input type="text" id="pincode" name="pincode" placeholder="xxxxxx">
+
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" placeholder="Delhi">
+
+        <label for="country">Country</label>
+        <input type="text" id="country" name="country" placeholder="India">
+
+        <label for="primaryCraft">Choose Your Primary Craft:</label>
+        <select id="primaryCraft" name="primaryCraft" required>
+          <option value="">Select your main art form</option>
+          <option value="zardozi">Zardozi Embroidery</option>
+          <option value="meenakari">Meenakari Jewelry</option>
+          <option value="terracotta">Terracotta Pottery</option>
+          <option value="miniature">Miniature Painting</option>
+        </select>
+
+        <label for="experience">Years of Experience:</label>
+        <select id="experience" name="experience" required>
+          <option value="">Select your experience level</option>
+          <option value="0-5">0-5 years</option>
+          <option value="5-10">5-10 years</option>
+          <option value="10+">10+ years</option>
+        </select>
+
+        <label for="yourStory">Your story</label>
+        <textarea id="yourStory" name="yourStory" rows="3" required></textarea>
+        <p><em>This is very important! Our AI will use this to write a beautiful story for your profile.</em></p>
+
+        <h1>Add Your Products</h1>
+        <p>(You can click "Add Another Product" for multiple items.)</p>
+
+        <div id="products-container">
+          <div class="product-form" data-product-index="1">
+            <h2>Product 1</h2>
+
+            <label for="product-name-1">Product Name:</label>
+            <input type="text" id="product-name-1" name="product-name-1">
+
+            <label for="product-price-1">Price (in ₹):</label>
+            <input type="number" id="product-price-1" name="product-price-1" min="1">
+
+            <label for="product-images-1">Product Images:</label>
+            <input type="file" id="product-images-1" name="product-images-1" multiple accept="image/*"
+              onchange="handleFileSelect(event, 1)">
+            <div id="preview-container-1" class="image-preview"></div>
+
+            <button type="button" onclick="removeProduct(1)">Remove This Product</button>
+          </div>
+        </div>
+
+        <button type="button" onclick="addProduct()">Add Another Product</button>
+
+        <label class="terms">
+          <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+          I agree to the Terms and Conditions of Delhi KalaKar Connect.
+        </label>
+
+        <button type="submit">✨ Create My AI-Powered Shop!</button>
+      </form>
+    </section>
+
+    <section id="ai-output" class="output-section">
+      <h2>Your AI-Generated Shopfront will appear here...</h2>
+    </section>
+  </main>
+
+  <footer>
+    <p>Powered by Google Gemini AI | Built by Shana 🚀</p>
+  </footer>
+
+  <script type="module" src="sigemini.js"></script>
+</body>
+</html>
